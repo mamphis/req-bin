@@ -11,6 +11,8 @@ export type HandledRequest = {
 }
 
 const ONE_HOUR = 1000 * 60 * 60;
+const MAX_CACHE_SIZE = 20;
+
 export function isRequestListener(value: unknown): value is RequestListener {
     return !!value && value instanceof RequestListener;
 }
@@ -111,6 +113,10 @@ export class RequestListener {
                     handler.cachedEvents.push(handledRequest);
                     handler.event.emit('request', handledRequest);
                     res.status(200).end();
+
+                    if (handler.cachedEvents.length > MAX_CACHE_SIZE) {
+                        handler.cachedEvents.shift();
+                    }
                 }
                 else {
                     return next({
