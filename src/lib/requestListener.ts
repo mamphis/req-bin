@@ -64,7 +64,11 @@ export class RequestListener {
     get deleteAt() {
         return this._deleteAt;
     }
-
+    
+    clear() {
+        this.cachedEvents = [];
+    }
+    
     public static get(id: string): RequestListener | undefined {
         return this.listeners.find(listeners => listeners.id === id);
     }

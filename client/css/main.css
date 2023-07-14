@@ -26,6 +26,7 @@ body,
 
 .content .request-details #body{
     display: none;
+    overflow-wrap: anywhere;
     white-space: break-spaces;
     border: 1px solid gray;
     border-radius: 3px;

@@ -4,6 +4,7 @@ const $ = document.querySelector.bind(document);
 const $requestUrl = $('input#request-url') as HTMLInputElement;
 const $copyUrl = $('button#copy-url') as HTMLButtonElement;
 const $newBin = $('button#new-bin') as HTMLButtonElement;
+const $clearBin = $('button#clear-bin') as HTMLButtonElement;
 const $requestList = $('div.request-list') as HTMLDivElement;
 const $binDeleteAt = $('span#bin-delete-at') as HTMLSpanElement;
 
@@ -18,6 +19,12 @@ $copyUrl.onclick = () => {
 }
 $newBin.onclick = () => {
     window.location.replace(window.location.origin);
+}
+$clearBin.onclick = () => {
+    fetch(window.location.href, {
+        method: 'DELETE',
+    });
+    $requestList.innerHTML = '';
 }
 
 const eventSource = new EventSource(location.href + '/event');
