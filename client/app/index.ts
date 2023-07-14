@@ -29,7 +29,9 @@ $clearBin.onclick = () => {
 
 const eventSource = new EventSource(location.href + '/event');
 
-const showDetails = (data: any) => {
+const showDetails = (req: HTMLDivElement, data: any) => {
+    document.querySelectorAll('div.request-list .selected').forEach(elem => elem.classList.remove('selected'));
+
     const $timestamp = document.createElement('div');
     const $method = document.createElement('div');
     const $ip = document.createElement('div');
@@ -57,6 +59,8 @@ const showDetails = (data: any) => {
     }
     console.log(data);
     $requestBody.textContent = data.body;
+
+    req.classList.add('selected');
 }
 
 eventSource.addEventListener('config', (ev) => {
@@ -85,7 +89,7 @@ eventSource.addEventListener('request', (ev) => {
     $req.appendChild($method);
     $req.appendChild($ip);
 
-    $req.onclick = showDetails.bind(globalThis, data);
+    $req.onclick = showDetails.bind(globalThis, $req, data);
 
     $requestList.prepend($req);
 });
