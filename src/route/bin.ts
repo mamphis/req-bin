@@ -20,6 +20,20 @@ router.get('/', (req, res, next) => {
     });
 });
 
+router.delete('/', (req,res,next) => {
+    const { handler } = res.locals;
+
+    if (!isRequestListener(handler)) {
+        return next({
+            code: 500,
+            message: 'Something went wrong when handling the request',
+        })
+    }
+
+    handler.clear();
+    res.status(200).end();
+}); 
+
 router.get('/event', (req, res, next) => {
     const { handler } = res.locals;
 
