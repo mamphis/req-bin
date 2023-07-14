@@ -19,6 +19,7 @@ app.set('views', join(__dirname, '../client'));
 app.enable('trust proxy');
 app.use('/static/js', express.static(join(__dirname, '../client/js')));
 app.use('/static/css', express.static(join(__dirname, '../client/css')));
+app.use('/static/css', express.static(join(__dirname, '../node_modules/bulma/css')));
 
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
     const id = v4()

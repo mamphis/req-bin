@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Semi+Condensed:100,200,300,400" rel="stylesheet">
     <style>
         /**/
         :root {
@@ -269,13 +268,10 @@
             <div class="bar"></div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script>
-        $(function () {
-            setTimeout(function () {
-                $('body').removeClass('loading');
-            }, 1000);
-        });
+        setTimeout(function () {
+            document.body.classList.remove('loading');
+        }, 1000);
     </script>
 </body>
 
