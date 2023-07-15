@@ -1,3 +1,7 @@
+html {
+    overflow-y: auto;
+}
+
 html,
 body,
 .content,
@@ -17,16 +21,18 @@ body,
     margin: 8px;
     padding: 0px 16px;
 }
+
 .content .request-list .incoming-request.selected {
     background-color: lightgreen;
 }
+
 .content .request-details #base-data {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.content .request-details #body{
+.content .request-details #body {
     display: none;
     overflow-wrap: anywhere;
     white-space: break-spaces;
@@ -35,12 +41,21 @@ body,
     padding: 4px 8px;
 }
 
-.content .request-details #body:not(:empty)  {
+.content .request-details #body:not(:empty) {
     display: block;
+}
+
+.content .request-details {
+    height: 100%;
 }
 
 .content .request-details,
 .content .request-list {
-    height: 80%;
+    max-height: 70%;
     overflow-y: auto;
+}
+
+.content header.header,
+.content footer.footer {
+    max-height: 15%;
 }
