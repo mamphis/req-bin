@@ -28,6 +28,13 @@ app.use('/:id', (req: Request, res: Response, next: NextFunction) => {
     next();
 }, binRouter);
 
+app.use((req: Request, res: Response, next: NextFunction) => {
+    next({
+        code: 404,
+        message: 'Route not found.',
+    })
+});
+
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     res.status(err.code ?? 500).render('error', err);
 });
