@@ -5,21 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
     <style>
         /**/
         :root {
             --main-color: #eaeaea;
             --stroke-color: black;
-
         }
 
-        /**/
+        html,
+        body {
+            height: 100%;
+        }
+
         body {
             background: var(--main-color);
         }
 
         h1 {
-            margin: 100px auto 0 auto;
+            padding-top: 100px;
+            margin: 0 auto 0 auto;
             color: var(--stroke-color);
             font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
             font-size: 10rem;
@@ -29,7 +34,8 @@
         }
 
         h2 {
-            margin: 20px auto 30px auto;
+            padding-top: 20px;
+            margin: 0px auto 30px auto;
             font-family: 'Encode Sans Semi Condensed', Verdana, sans-serif;
             font-size: 1.5rem;
             font-weight: 200;
@@ -37,16 +43,24 @@
         }
 
         h1,
-        h2 {
-            -webkit-transition: opacity 0.5s linear, margin-top 0.5s linear;
+        h2,
+        .new-bin {
+            -webkit-transition: opacity 0.5s linear, padding-top 0.5s linear;
             /* Safari */
-            transition: opacity 0.5s linear, margin-top 0.5s linear;
+            transition: opacity 0.5s linear, padding-top 0.5s linear;
         }
 
         .loading h1,
-        .loading h2 {
-            margin-top: 0px;
+        .loading h2,
+        .loading .new-bin {
+            padding-top: 0px;
             opacity: 0;
+        }
+
+        .new-bin {
+            display: flex;
+            justify-content: center;
+            padding-top: 200px;
         }
 
         .gears {
@@ -267,6 +281,10 @@
             <div class="bar"></div>
             <div class="bar"></div>
         </div>
+    </div>
+
+    <div class="new-bin">
+        <a class="button" href="/">Create New Bin</a>
     </div>
     <script>
         setTimeout(function () {
