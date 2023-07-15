@@ -14,4 +14,8 @@ export default class Config {
         this.#port = port;
         return port;
     }
+
+    static get allowCustomRoutes() {
+        return process.env.ALLOW_CUSTOM_ROUTES?.toLowerCase() === 'true';
+    }
 }

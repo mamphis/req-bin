@@ -20,6 +20,15 @@ app.get('/', (req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use('/:id', (req: Request, res: Response, next: NextFunction) => {
+    if (!Config.allowCustomRoutes) {
+        if (!validate(req.params.id)) {
+            return next({
+                code: 400,
+                message: 'Invalid request bin name.',
+            });
+        }
+    }
+
     if (!RequestListener.get(req.params.id)) {
         RequestListener.create(req.params.id);
     }
@@ -41,4 +50,5 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 
 app.listen(Config.port, () => {
     console.log(`Server started listening on port ${Config.port}`);
+    console.log(`Custom Request Bin names allowed: ${Config.allowCustomRoutes}`)
 });
