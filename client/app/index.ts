@@ -5,13 +5,13 @@ const $requestUrl = $('input#request-url') as HTMLInputElement;
 const $copyUrl = $('button#copy-url') as HTMLButtonElement;
 const $newBin = $('button#new-bin') as HTMLButtonElement;
 const $clearBin = $('button#clear-bin') as HTMLButtonElement;
+const $reqBinStatus = $('a#req-bin-status') as HTMLAnchorElement;
 const $requestList = $('div.request-list') as HTMLDivElement;
 const $binDeleteAt = $('span#bin-delete-at') as HTMLSpanElement;
 
 const $requestBaseData = $('div#base-data') as HTMLDivElement;
 const $requestHeaders = $('tbody#headers') as HTMLTableElement;
 const $requestBody = $('pre#body') as HTMLPreElement;
-
 
 $requestUrl.value = location.href + '/bin';
 $copyUrl.onclick = () => {
@@ -92,4 +92,14 @@ eventSource.addEventListener('request', (ev) => {
     $req.onclick = showDetails.bind(globalThis, $req, data);
 
     $requestList.prepend($req);
+});
+
+eventSource.addEventListener('error', (ev) => {
+    if(ev.eventPhase === EventSource.CLOSED) {
+        eventSource.close();
+
+        $reqBinStatus.textContent = "Closed";
+        $reqBinStatus.classList.remove("is-success");
+        $reqBinStatus.classList.add("is-danger");
+    } 
 });
