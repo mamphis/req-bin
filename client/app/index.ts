@@ -76,7 +76,7 @@ eventSource.addEventListener('request', (ev) => {
     const $timestamp = document.createElement('div');
     const $method = document.createElement('div');
     const $ip = document.createElement('div');
-    $req.classList.add('incoming-request');
+    $req.classList.add('incoming-request', 'box', 'p-1');
     $timestamp.classList.add('timestamp');
     $method.classList.add('method');
     $ip.classList.add('ip')
