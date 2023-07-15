@@ -33,6 +33,8 @@ export class RequestListener {
             this.listeners = this.listeners.filter(listener => listener.id !== id);
             listener.event.emit('end');
         });
+
+        console.log('Created new bucket: ' + id);
     }
 
     private refreshTimer(this: RequestListener) {
@@ -64,11 +66,11 @@ export class RequestListener {
     get deleteAt() {
         return this._deleteAt;
     }
-    
+
     clear() {
         this.cachedEvents = [];
     }
-    
+
     public static get(id: string): RequestListener | undefined {
         return this.listeners.find(listeners => listeners.id === id);
     }
