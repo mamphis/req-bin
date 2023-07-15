@@ -58,4 +58,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
 app.listen(Config.port, () => {
     console.log(`Server started listening on port ${Config.port}`);
     console.log(`Custom Request Bin names allowed: ${Config.allowCustomRoutes}`)
+    console.log(`Cached requests for each bin: ${Config.requestBinCacheSize}`)
+    console.log(`Time until Request Bin will be invalidated: ${Config.requestBinInactiveDuration}`)
 });

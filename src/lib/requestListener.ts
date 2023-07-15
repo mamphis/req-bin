@@ -1,6 +1,7 @@
 import EventEmitter from "events";
 import express, { NextFunction, Request, RequestHandler, Response } from "express";
 import { IncomingHttpHeaders } from "http";
+import Config from "./config";
 
 export type HandledRequest = {
     headers: IncomingHttpHeaders,
@@ -9,9 +10,6 @@ export type HandledRequest = {
     timestamp: Date,
     ips: string[],
 }
-
-const ONE_HOUR = 1000 * 60 * 60;
-const MAX_CACHE_SIZE = 20;
 
 export function isRequestListener(value: unknown): value is RequestListener {
     return !!value && value instanceof RequestListener;
@@ -41,8 +39,8 @@ export class RequestListener {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             this.event.emit('obsolete');
-        }, ONE_HOUR);
-        this._deleteAt = new Date(new Date().getTime() + ONE_HOUR);
+        }, Config.requestBinInactiveDuration);
+        this._deleteAt = new Date(new Date().getTime() + Config.requestBinInactiveDuration);
 
         return this.timeout;
     }
@@ -114,7 +112,7 @@ export class RequestListener {
                     handler.event.emit('request', handledRequest);
                     res.status(200).end();
 
-                    if (handler.cachedEvents.length > MAX_CACHE_SIZE) {
+                    if (handler.cachedEvents.length > Config.requestBinCacheSize) {
                         handler.cachedEvents.shift();
                     }
                 }
