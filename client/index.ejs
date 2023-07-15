@@ -27,6 +27,11 @@
                 </div>
                 <div class="column is-half">
                     <div class="field has-addons">
+                        <p class="control">
+                            <a id="req-bin-status" class="button is-light is-success">
+                                Open
+                            </a>
+                        </p>
                         <div class="control is-expanded">
                             <input type="text" class="input" readonly id="request-url">
                         </div>
@@ -40,7 +45,7 @@
 
             </div>
             <div class="request-details column">
-                <div>Bin stays until <span id="bin-delete-at"></span></div>
+                <div>This Request Bin will be available until <span id="bin-delete-at"></span></div>
                 <div id="base-data" class="subtitle"></div>
                 <table class="table">
                     <tbody id="headers"></tbody>
