@@ -1,17 +1,9 @@
-import dotenv from "dotenv";
 import express, { NextFunction, Request, Response } from "express";
+import { join } from "path";
 import { v4, validate } from 'uuid';
 import { RequestListener } from "./lib/requestListener";
 import binRouter from './route/bin';
-import { join } from "path";
-
-dotenv.config();
-
-const port = Number(process.env.PORT);
-if (isNaN(port)) {
-    console.warn('Port must be defined');
-    process.exit(1);
-}
+import Config from "./lib/config";
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -40,6 +32,6 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     res.status(err.code ?? 500).render('error', err);
 });
 
-app.listen(port, () => {
-    console.log(`Server started listening on port ${port}`);
+app.listen(Config.port, () => {
+    console.log(`Server started listening on port ${Config.port}`);
 });
