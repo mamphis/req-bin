@@ -22,15 +22,23 @@
                     <div class="column is-half">
                         <div class="field has-addons">
                             <label class="control">
+                                <style>
+                                    #req-bin-status.is-success::before {
+                                        content: "<%=l['bin-status.open']%>";
+                                    }
+
+                                    #req-bin-status.is-danger::before {
+                                        content: '<%=l["bin-status.closed"]%>';
+                                    }
+                                </style>
                                 <a id="req-bin-status" class="button is-light is-success">
-                                    Open
                                 </a>
                             </label>
                             <div class="control is-expanded">
                                 <input type="text" class="input" readonly id="request-url">
                             </div>
                             <div class="control">
-                                <button class="button c-is-primary" id="copy-url">Copy</button>
+                                <button class="button c-is-primary" id="copy-url"><%=l['bin-link.copy']%></button>
                             </div>
                         </div>
                     </div>
@@ -39,18 +47,21 @@
             <div class="request-list column is-one-third">
                 <div class="panel">
                     <div class="panel-heading c-is-accent">
-                        Incoming Requests
+                        <%=l['incoming-requests']%>
                     </div>
                     <div class="panel-block is-flex is-justify-content-center">
                         <div class="field has-addons">
                             <div class="control">
-                                <button class="button is-outlined c-is-primary" id="new-bin">New Bin</button>
+                                <button class="button is-outlined c-is-primary" id="new-bin">
+                                    <%=l['new-bin']%></button>
                             </div>
                             <div class="control">
-                                <button class="button is-outlined c-is-primary" id="clear-bin">Clear</button>
+                                <button class="button is-outlined c-is-primary" id="clear-bin">
+                                    <%=l['clear-bin']%></button>
                             </div>
                             <div class="control">
-                                <button class="button is-outlined c-is-primary" id="refresh-bin">Refresh</button>
+                                <button class="button is-outlined c-is-primary" id="refresh-bin">
+                                    <%=l['refresh-bin']%></button>
                             </div>
                         </div>
                     </div>
@@ -58,7 +69,7 @@
                 </div>
             </div>
             <div class="request-details column">
-                <div>This Request Bin will be available until <span id="bin-delete-at"></span></div>
+                <div><%=l['available-until']%> <span id="bin-delete-at"></span></div>
                 <div id="base-data" class="subtitle"></div>
                 <table class="table">
                     <tbody id="headers"></tbody>
@@ -67,14 +78,15 @@
             </div>
             <footer class="footer column is-12 has-text-centered c-is-secondary">
                 <p>
-                    <strong>Request Bin</strong> by <a href="https://github.com/mamphis" class="c-is-text-accent"
-                        target="_blank">mamphis</a>.
+                    <strong>Request Bin</strong>
+                    <%=l['by']%> <a href="https://github.com/mamphis" class="c-is-text-accent"
+                            target="_blank">mamphis</a>.
                 </p>
                 <div class="field has-addons is-justify-content-end">
-                    <div class="control"><button id="theme-toggle-dark"
-                            class="button is-outlined">Dark</button></div>
+                    <div class="control"><button id="theme-toggle-dark" class="button is-outlined"><%=l['theme-dark']%>
+                        </button></div>
                     <div class="control"><button id="theme-toggle-light"
-                            class="button is-outlined">Light</button></div>
+                            class="button is-outlined"><%=l['theme-light']%> </button></div>
                 </div>
             </footer>
         </div>

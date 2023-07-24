@@ -107,7 +107,6 @@ eventSource.addEventListener('error', (ev) => {
     if (ev.eventPhase === EventSource.CLOSED) {
         eventSource.close();
 
-        $reqBinStatus.textContent = "Closed";
         $reqBinStatus.classList.remove("is-success");
         $reqBinStatus.classList.add("is-danger");
     }

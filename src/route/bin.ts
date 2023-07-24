@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { HandledRequest, RequestListener, isRequestListener } from "../lib/requestListener";
-import { request } from "http";
+import { dictionary, languages } from "../lib/lang";
+import acceptLanguageParser from 'accept-language-parser';
 
 const router = Router();
 router.use((req, res, next) => {
@@ -16,8 +17,10 @@ router.use((req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
+    const language = acceptLanguageParser.pick([...languages], req.headers["accept-language"] ?? 'en') ?? 'en';
     res.render('index', {
-        id: res.locals.id
+        id: res.locals.id,
+        l: dictionary[language]
     });
 });
 

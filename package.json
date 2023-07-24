@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "accept-language-parser": "^1.5.0",
     "bulma": "^0.9.4",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
@@ -20,6 +21,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/accept-language-parser": "^1.5.3",
     "@types/express": "^4.17.17",
     "@types/node": "^20.4.2",
     "@types/uuid": "^9.0.2",
