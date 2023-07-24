@@ -15,7 +15,7 @@ html,
 .dark {
     /* https://realtimecolors.com/?colors=fafafa-050505-a7bf92-132013-9fc6a0 */
     --text: 250, 250, 250;
-    --background: 5, 5, 5;
+    --background: 32, 32, 32;
     --primary: 167, 191, 146;
     --secondary: 19, 32, 19;
     --accent: 159, 198, 160;
