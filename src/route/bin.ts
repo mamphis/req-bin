@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { HandledRequest, RequestListener, isRequestListener } from "../lib/requestListener";
+import { request } from "http";
 
 const router = Router();
 router.use((req, res, next) => {
@@ -20,7 +21,7 @@ router.get('/', (req, res, next) => {
     });
 });
 
-router.delete('/', (req,res,next) => {
+router.delete('/', (req, res, next) => {
     const { handler } = res.locals;
 
     if (!isRequestListener(handler)) {
@@ -32,7 +33,7 @@ router.delete('/', (req,res,next) => {
 
     handler.clear();
     res.status(200).end();
-}); 
+});
 
 router.get('/event', (req, res, next) => {
     const { handler } = res.locals;
@@ -59,10 +60,14 @@ router.get('/event', (req, res, next) => {
 
     const sendHandledRequest = (request: HandledRequest) => {
         sendEvent('request', request);
+    };
+
+    const sendChangeHandler = () => {
         sendEvent('config', {
             deleteAt: handler.deleteAt,
         });
-    };
+    }
+
     const timeOutHandler = () => {
         res.end();
     };
@@ -70,14 +75,32 @@ router.get('/event', (req, res, next) => {
     handler.events.forEach(sendHandledRequest);
     handler.on('request', sendHandledRequest);
     handler.on('end', timeOutHandler);
+    handler.on('changed', sendChangeHandler);
 
     sendEvent('config', {
         deleteAt: handler.deleteAt,
     });
+
     res.on('close', () => {
         handler.off('request', sendHandledRequest);
         handler.off('end', timeOutHandler);
+        handler.off('changed', sendChangeHandler);
     });
+});
+
+router.post('/refresh', (req, res, next) => {
+    const { handler } = res.locals;
+
+    if (!isRequestListener(handler)) {
+        return next({
+            code: 500,
+            message: 'Something went wrong when handling the request',
+        })
+    }
+
+    handler.refreshTimer();
+
+    res.status(201).end();
 });
 
 router.use('/bin', ...RequestListener.handler())

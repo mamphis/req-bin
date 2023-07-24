@@ -37,24 +37,27 @@ export class RequestListener {
         console.log('Created new bucket: ' + id);
     }
 
-    private refreshTimer(this: RequestListener) {
+    public refreshTimer(this: RequestListener) {
         clearTimeout(this.timeout);
         this.timeout = setTimeout(() => {
             this.event.emit('obsolete');
         }, Config.requestBinInactiveDuration);
         this._deleteAt = new Date(new Date().getTime() + Config.requestBinInactiveDuration);
+        this.event.emit('changed');
 
         return this.timeout;
     }
 
     public on(event: 'request', listener: (request: HandledRequest) => void): void;
     public on(event: 'end', listener: () => void): void;
+    public on(event: 'changed', listener: () => void): void;
     public on(event: string, listener: (...arg: any[]) => void): void {
         this.event.on(event, listener);
     }
 
     public off(event: 'request', listener: (request: HandledRequest) => void): void;
     public off(event: 'end', listener: () => void): void;
+    public off(event: 'changed', listener: () => void): void;
     public off(event: string, listener: (...arg: any[]) => void): void {
         this.event.off(event, listener);
     }

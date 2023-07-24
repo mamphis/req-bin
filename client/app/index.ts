@@ -5,6 +5,7 @@ const $requestUrl = $('input#request-url') as HTMLInputElement;
 const $copyUrl = $('button#copy-url') as HTMLButtonElement;
 const $newBin = $('button#new-bin') as HTMLButtonElement;
 const $clearBin = $('button#clear-bin') as HTMLButtonElement;
+const $refreshBin = $('button#refresh-bin') as HTMLButtonElement;
 const $reqBinStatus = $('a#req-bin-status') as HTMLAnchorElement;
 const $requestList = $('div.request-list') as HTMLDivElement;
 const $binDeleteAt = $('span#bin-delete-at') as HTMLSpanElement;
@@ -16,16 +17,21 @@ const $requestBody = $('pre#body') as HTMLPreElement;
 $requestUrl.value = location.href + '/bin';
 $copyUrl.onclick = () => {
     navigator.clipboard.writeText($requestUrl.value);
-}
+};
 $newBin.onclick = () => {
     window.location.replace(window.location.origin);
-}
+};
 $clearBin.onclick = () => {
     fetch(window.location.href, {
         method: 'DELETE',
     });
     $requestList.innerHTML = '';
-}
+};
+$refreshBin.onclick = () => {
+    fetch(window.location.href + '/refresh', {
+        method: 'POST',
+    });
+};
 
 const eventSource = new EventSource(location.href + '/event');
 
