@@ -9,6 +9,9 @@ const $refreshBin = $('button#refresh-bin') as HTMLButtonElement;
 const $reqBinStatus = $('a#req-bin-status') as HTMLAnchorElement;
 const $requestList = $('div#request-list') as HTMLDivElement;
 const $binDeleteAt = $('span#bin-delete-at') as HTMLSpanElement;
+const $themeToggleDark = $('button#theme-toggle-dark') as HTMLButtonElement;
+const $themeToggleLight = $('button#theme-toggle-light') as HTMLButtonElement;
+const $html = $('html') as HTMLHtmlElement;
 
 const $requestBaseData = $('div#base-data') as HTMLDivElement;
 const $requestHeaders = $('tbody#headers') as HTMLTableElement;
@@ -82,7 +85,7 @@ eventSource.addEventListener('request', (ev) => {
     const $timestamp = document.createElement('div');
     const $method = document.createElement('div');
     const $ip = document.createElement('div');
-    $req.classList.add('incoming-request', 'box', 'p-1');
+    $req.classList.add('incoming-request', 'box', 'p-2', 'is-flex-grow-1');
     $timestamp.classList.add('timestamp');
     $method.classList.add('method');
     $ip.classList.add('ip')
@@ -109,3 +112,22 @@ eventSource.addEventListener('error', (ev) => {
         $reqBinStatus.classList.add("is-danger");
     }
 });
+
+const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
+console.log(darkModePreference);
+
+const toggleTheme = (dark: boolean) => {
+    if (dark) {
+        $themeToggleDark.classList.add('is-active', 'c-is-accent');
+        $themeToggleLight.classList.remove('is-active', 'c-is-accent');
+        $html.classList.add('dark');
+    } else {
+        $themeToggleLight.classList.add('is-active', 'c-is-accent');
+        $themeToggleDark.classList.remove('is-active', 'c-is-accent');
+        $html.classList.remove('dark');
+    }
+}
+
+toggleTheme(darkModePreference.matches);
+$themeToggleDark.onclick = toggleTheme.bind(window, true);
+$themeToggleLight.onclick = toggleTheme.bind(window, false);

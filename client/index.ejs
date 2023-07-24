@@ -15,19 +15,6 @@
         <div class="columns is-multiline">
             <header class="header is-full column mt-4">
                 <div class="columns is-vcentered">
-                    <div class="column is-3">
-                        <div class="field has-addons">
-                            <div class="control">
-                                <button class="button is-outlined is-light is-info" id="new-bin">New Bin</button>
-                            </div>
-                            <div class="control">
-                                <button class="button is-outlined is-light is-info" id="clear-bin">Clear</button>
-                            </div>
-                            <div class="control">
-                                <button class="button is-outlined is-light is-info" id="refresh-bin">Refresh</button>
-                            </div>
-                        </div>
-                    </div>
                     <div class="column">
                         <label class="subtitle">Request Bin</label>
                     </div>
@@ -43,20 +30,31 @@
                                 <input type="text" class="input" readonly id="request-url">
                             </div>
                             <div class="control">
-                                <button class="button" id="copy-url">Copy</button>
+                                <button class="button c-is-primary" id="copy-url">Copy</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
-            <div class="request-list column is-3">
-                <div class="card">
-                    <header class="card-header">
-                        <p class="card-header-title">
-                            Incoming Requests
-                        </p>
-                    </header>
-                    <div id="request-list" class="card-content"></div>
+            <div class="request-list column is-one-third">
+                <div class="panel">
+                    <div class="panel-heading c-is-accent">
+                        Incoming Requests
+                    </div>
+                    <div class="panel-block is-flex is-justify-content-center">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <button class="button is-outlined c-is-primary" id="new-bin">New Bin</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-outlined c-is-primary" id="clear-bin">Clear</button>
+                            </div>
+                            <div class="control">
+                                <button class="button is-outlined c-is-primary" id="refresh-bin">Refresh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="request-list" class="panel-block is-wrapped"></div>
                 </div>
             </div>
             <div class="request-details column">
@@ -67,10 +65,17 @@
                 </table>
                 <pre id="body" class="is-family-monospace"></pre>
             </div>
-            <footer class="footer column is-12 has-text-centered">
+            <footer class="footer column is-12 has-text-centered c-is-secondary">
                 <p>
-                    <strong>Request Bin</strong> by <a href="https://github.com/mamphis" target="_blank">mamphis</a>.
+                    <strong>Request Bin</strong> by <a href="https://github.com/mamphis" class="c-is-text-accent"
+                        target="_blank">mamphis</a>.
                 </p>
+                <div class="field has-addons is-justify-content-end">
+                    <div class="control"><button id="theme-toggle-dark"
+                            class="button is-outlined">Dark</button></div>
+                    <div class="control"><button id="theme-toggle-light"
+                            class="button is-outlined">Light</button></div>
+                </div>
             </footer>
         </div>
     </div>

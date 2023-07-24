@@ -2,11 +2,80 @@ html {
     overflow-y: auto;
 }
 
-/* 
-* {
-    border: 1px green solid;
-    box-sizing: border-box;
-} */
+html,
+.light {
+    /*https://realtimecolors.com/?colors=101009-ececdf-a7bf92-cce1cc-538d55*/
+    --text: 16, 16, 9;
+    --background: 236, 236, 223;
+    --primary: 167, 191, 146;
+    --secondary: 204, 225, 204;
+    --accent: 83, 141, 85;
+}
+
+.dark {
+    /* https://realtimecolors.com/?colors=fafafa-050505-a7bf92-132013-9fc6a0 */
+    --text: 250, 250, 250;
+    --background: 5, 5, 5;
+    --primary: 167, 191, 146;
+    --secondary: 19, 32, 19;
+    --accent: 159, 198, 160;
+}
+
+.dark .panel {
+    box-shadow: 0 .5em 1em -.125em rgba(200, 200, 200, .1), 0 0 0 1px rgba(200, 200, 200, .02);
+}
+
+body,
+html,
+input,
+button,
+table,
+.box {
+    color: rgb(var(--text)) !important;
+    background-color: rgb(var(--background)) !important;
+}
+
+.c-is-primary {
+    background-color: rgb(var(--primary)) !important;
+}
+
+.c-is-secondary {
+    background-color: rgb(var(--secondary)) !important;
+}
+
+.c-is-accent {
+    background-color: rgb(var(--accent)) !important;
+}
+
+.c-is-text-accent {
+    color: rgb(var(--accent)) !important;
+}
+
+.panel-block:not(:last-child),
+.panel-tabs:not(:last-child) {
+    border-bottom-color: rgb(var(--accent)) !important;
+}
+
+button.c-is-secondary,
+input.c-is-secondary,
+button.c-is-accent:hover,
+input.c-is-accent:hover {
+    border-color: rgb(var(--primary)) !important;
+}
+
+button.c-is-accent,
+input.c-is-accent,
+button.c-is-primary:hover,
+input.c-is-primary:hover {
+    border-color: rgb(var(--accent)) !important;
+}
+
+button.c-is-primary,
+input.c-is-primary,
+button.c-is-secondary:hover,
+input.c-is-secondary:hover {
+    border-color: rgba(var(--accent), 0.3) !important;
+}
 
 html,
 body,
@@ -16,23 +85,23 @@ body,
 }
 
 .content .request-list {
-    display: flex;
-    flex-direction: column;
+    max-width: 320px;
 }
 
-.content .request-list>.card{
+.content .request-list>.panel {
     height: 100%;
     overflow-y: auto;
 }
 
 .content .request-list .incoming-request {
     cursor: pointer;
-    margin: 8px;
     padding: 0px 16px;
+    margin-bottom: 0.25rem;
+    background-color: rgba(var(--accent), 0.1) !important;
 }
 
 .content .request-list .incoming-request.selected {
-    background-color: lightgreen;
+    background-color: rgba(var(--accent), 0.3) !important;
 }
 
 .content .request-details #base-data {
