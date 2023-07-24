@@ -84,8 +84,10 @@ body,
     height: 100%;
 }
 
-.content .request-list {
-    max-width: 320px;
+@media screen and (min-width: 1024px) {
+    .content .request-list {
+        max-width: 320px;
+    }
 }
 
 .content .request-list>.panel {
