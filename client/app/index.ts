@@ -7,7 +7,7 @@ const $newBin = $('button#new-bin') as HTMLButtonElement;
 const $clearBin = $('button#clear-bin') as HTMLButtonElement;
 const $refreshBin = $('button#refresh-bin') as HTMLButtonElement;
 const $reqBinStatus = $('a#req-bin-status') as HTMLAnchorElement;
-const $requestList = $('div.request-list') as HTMLDivElement;
+const $requestList = $('div#request-list') as HTMLDivElement;
 const $binDeleteAt = $('span#bin-delete-at') as HTMLSpanElement;
 
 const $requestBaseData = $('div#base-data') as HTMLDivElement;
@@ -101,11 +101,11 @@ eventSource.addEventListener('request', (ev) => {
 });
 
 eventSource.addEventListener('error', (ev) => {
-    if(ev.eventPhase === EventSource.CLOSED) {
+    if (ev.eventPhase === EventSource.CLOSED) {
         eventSource.close();
 
         $reqBinStatus.textContent = "Closed";
         $reqBinStatus.classList.remove("is-success");
         $reqBinStatus.classList.add("is-danger");
-    } 
+    }
 });

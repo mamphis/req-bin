@@ -25,32 +25,39 @@
                             </div>
                             <div class="control">
                                 <button class="button is-outlined is-light is-info" id="refresh-bin">Refresh</button>
-                        </div>
+                            </div>
                         </div>
                     </div>
                     <div class="column">
                         <label class="subtitle">Request Bin</label>
-                </div>
+                    </div>
 
-                <div class="column is-half">
-                    <div class="field has-addons">
+                    <div class="column is-half">
+                        <div class="field has-addons">
                             <label class="control">
-                            <a id="req-bin-status" class="button is-light is-success">
-                                Open
-                            </a>
+                                <a id="req-bin-status" class="button is-light is-success">
+                                    Open
+                                </a>
                             </label>
-                        <div class="control is-expanded">
-                            <input type="text" class="input" readonly id="request-url">
-                        </div>
-                        <div class="control">
-                            <button class="button" id="copy-url">Copy</button>
+                            <div class="control is-expanded">
+                                <input type="text" class="input" readonly id="request-url">
+                            </div>
+                            <div class="control">
+                                <button class="button" id="copy-url">Copy</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                </div>
             </header>
-            <div class="request-list card column is-3">
-
+            <div class="request-list column is-3">
+                <div class="card">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Incoming Requests
+                        </p>
+                    </header>
+                    <div id="request-list" class="card-content"></div>
+                </div>
             </div>
             <div class="request-details column">
                 <div>This Request Bin will be available until <span id="bin-delete-at"></span></div>
@@ -61,7 +68,9 @@
                 <pre id="body" class="is-family-monospace"></pre>
             </div>
             <footer class="footer column is-12 has-text-centered">
-                <p> <strong>Request Bin</strong> by <a href="https://github.com/mamphis" target="_blank">mamphis</a>. </p>
+                <p>
+                    <strong>Request Bin</strong> by <a href="https://github.com/mamphis" target="_blank">mamphis</a>.
+                </p>
             </footer>
         </div>
     </div>
