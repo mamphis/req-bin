@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . .
 
+HEALTHCHECK --interval=1m --timeout=3s CMD [ "node", "dist/healthcheck.js" ]
+
 CMD ["node", "."]
